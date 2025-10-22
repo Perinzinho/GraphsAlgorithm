@@ -1,5 +1,5 @@
 def criar_grafo():
-    graph = [()]
+    graph = {}
     return graph
     """
     Retorna um novo grafo vazio.
