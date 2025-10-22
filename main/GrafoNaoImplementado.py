@@ -1,4 +1,6 @@
 def criar_grafo():
+    graph = [()]
+    return graph
     """
     Retorna um novo grafo vazio.
     Passos:
