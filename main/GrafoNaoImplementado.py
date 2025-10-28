@@ -11,8 +11,11 @@ def criar_grafo():
 
 
 def inserir_vertice(grafo, vertice):
-    grafo={[vertice]=[]}
-    return grafo
+    if(vertice in grafo):
+        return "Vértice já existe"
+    if(!vertice in grafo):
+        grafo={[vertice]=[]}
+        return grafo
 
     """
     Insere um vértice no grafo, sem arestas iniciais.
