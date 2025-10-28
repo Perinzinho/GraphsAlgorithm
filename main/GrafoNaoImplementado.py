@@ -11,7 +11,7 @@ def criar_grafo():
 
 
 def inserir_vertice(grafo, vertice):
-    if(vertice in grafo):
+    if(vertice in grafo.keys()):
         return "Vértice já existe"
     if(!vertice in grafo):
         grafo={[vertice]=[]}
