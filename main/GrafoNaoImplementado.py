@@ -28,6 +28,11 @@ def inserir_vertice(grafo, vertice):
 
 
 def inserir_aresta(grafo, origem, destino, nao_direcionado=False):
+    if(origem in grafo.keys() and destino in grafo.keys()):
+        if(nao_direcionado==True):
+            grafo={[origem]=[destino], [destino]=[origem]}
+        if(nao_direcionado==False):
+            grafo={[origem]=[detino]}
     """
     Adiciona aresta entre origem e destino.
     Passos:
