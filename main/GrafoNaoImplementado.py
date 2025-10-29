@@ -23,7 +23,7 @@ def inserir_vertice(grafo, vertice):#Perin
     1. Verificar se 'vertice' já é chave em grafo.
     2. Se não for, criar entrada grafo[vertice] = []
     3. Se já existir, não fazer nada (ou avisar)
-    """
+    """ 
     pass
 
 
@@ -43,32 +43,36 @@ def inserir_aresta(grafo, origem, destino, nao_direcionado=False):#Perin
     """
     pass
 
-def vizinhos(grafo, vertice):
-    """
-    Retorna a lista de vizinhos de 'vertice'.
-    Passos:
-    1. Se 'vertice' estiver em grafo, retornar grafo[vertice] (lista).
-    2. Se não existir, retornar lista vazia ou sinalizar erro.
-    """
-    pass
+def vizinhos(grafo, vertice): # Noah
+    if vertice in grafo:
+        return grafo[vertice]
+    else:
+        print(f"Vértice '{vertice}' não encontrado no grafo.")
+        return []
 
-def listar_vizinhos(grafo, vertice):
-    """
-    Função semântica: imprimir/retornar os vizinhos de 'vertice'.
-    Passos:
-    1. Obter lista = vizinhos(grafo, vertice)
-    2. Retornar/imprimir essa lista (ou informar que o vértice não existe)
-    """
-    pass
 
-def exibir_grafo(grafo):
-    """
-    Exibe o grafo em forma legível (lista de adjacência).
-    Passos:
-    1. Para cada vertice em ordem
-         - imprimir: vertice -> vizinhos
-    """
-    pass
+def listar_vizinhos(grafo, vertice): # Noah
+    if vertice not in grafo:
+        print(f"O vértice '{vertice}' não existe no grafo.")
+        return None
+
+    vizinhos = grafo[vertice]
+
+    if not vizinhos:
+        print(f"O vértice '{vertice}' não possui vizinhos.")
+    else:
+        print(f"Vizinhos de '{vertice}': {vizinhos}")
+
+    return vizinhos
+
+def exibir_grafo(grafo): # Noah
+    if not grafo:
+        print("O grafo está vazio.")
+        return
+
+    for vertice in sorted(grafo.keys()):
+        vizinhos = grafo[vertice]
+        print(f"{vertice} -> {vizinhos if vizinhos else '∅'}")
 
 def remover_aresta(grafo, origem, destino, nao_direcionado=False):
     """
