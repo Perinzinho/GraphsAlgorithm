@@ -74,7 +74,7 @@ def exibir_grafo(grafo): # Noah
         vizinhos = grafo[vertice]
         print(f"{vertice} -> {vizinhos if vizinhos else '∅'}")
 
-def remover_aresta(grafo, origem, destino, nao_direcionado=False):
+def remover_aresta(grafo, origem, destino, nao_direcionado=False):#GUSTAVO
     """
     Remove a aresta entre origem e destino.
     Passos:
@@ -86,7 +86,7 @@ def remover_aresta(grafo, origem, destino, nao_direcionado=False):
     pass
 
 
-def remover_vertice(grafo, vertice, nao_direcionado=True):
+def remover_vertice(grafo, vertice, nao_direcionado=True):#GUSTAVO
     """
     Remove um vértice e todas as arestas que o tocam.
     Passos:
@@ -99,7 +99,7 @@ def remover_vertice(grafo, vertice, nao_direcionado=True):
     pass
 
 
-def existe_aresta(grafo, origem, destino):
+def existe_aresta(grafo, origem, destino):#GUSTAVO
     """
     Verifica se existe aresta direta origem -> destino.
     Passos:
