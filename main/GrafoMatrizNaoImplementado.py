@@ -1,16 +1,28 @@
-def criar_grafo():
-    """
-    Cria e retorna uma matriz de adjacência vazia e uma lista de vértices.
+from numba.cuda.printimpl import print_item
 
-    Passos:
-    1. Criar uma lista vazia chamada matriz (para armazenar as conexões).
-    2. Criar uma lista vazia chamada vertices (para armazenar os nomes dos vértices).
-    3. Retornar (matriz, vertices).
-    """
-    pass
+
+def criar_grafo():
+    matriz = [()]
+    vertice = [()]
+    return matriz, vertice
+pass
 
 
 def inserir_vertice(matriz, vertices, vertice):
+    if vertice in vertices:
+        print(f"O vertice {vertice} ja existe no grafo.")
+        return matriz, vertices
+
+    vertices.append(vertice)
+
+    for linha in matriz:
+        linha.append(0)
+
+    nova_linha = [0] * len(vertices)
+    matriz.append(nova_linha)
+    print(f"vertice {vertice} adicionado")
+    return matriz, vertices
+
     """
     Adiciona um novo vértice ao grafo.
 
