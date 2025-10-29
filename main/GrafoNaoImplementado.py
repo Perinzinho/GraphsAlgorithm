@@ -1,4 +1,4 @@
-def criar_grafo():
+def criar_grafo():#Perin
     graph = {}
     return graph
     """
@@ -10,7 +10,7 @@ def criar_grafo():
     pass
 
 
-def inserir_vertice(grafo, vertice):
+def inserir_vertice(grafo, vertice):#Perin
     if(vertice in grafo.keys()):
         return "Vértice já existe"
     if(!vertice in grafo.keys()):
@@ -27,7 +27,7 @@ def inserir_vertice(grafo, vertice):
     pass
 
 
-def inserir_aresta(grafo, origem, destino, nao_direcionado=False):
+def inserir_aresta(grafo, origem, destino, nao_direcionado=False):#Perin
     if(origem in grafo.keys() and destino in grafo.keys()):
         if(nao_direcionado==True):
             grafo={[origem]=[destino], [destino]=[origem]}
@@ -136,7 +136,12 @@ def percurso_valido(grafo, caminho):
 
 
 
-def main():
+def main():#Perin
+
+
+
+
+
     """
     Crie um menu onde seja possível escolher qual ação deseja realizar
     ex:
