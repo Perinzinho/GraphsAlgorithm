@@ -41,7 +41,7 @@ def vizinhos(grafo, vertice): # Noah
     """
     pass
 
-def listar_vizinhos(grafo, vertice):
+def listar_vizinhos(grafo, vertice): # Noah
     """
     Função semântica: imprimir/retornar os vizinhos de 'vertice'.
     Passos:
@@ -50,7 +50,7 @@ def listar_vizinhos(grafo, vertice):
     """
     pass
 
-def exibir_grafo(grafo):
+def exibir_grafo(grafo): # Noah
     """
     Exibe o grafo em forma legível (lista de adjacência).
     Passos:
