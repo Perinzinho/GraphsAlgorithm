@@ -1,5 +1,5 @@
-def criar_grafo():
-    graph = [()]
+def criar_grafo():#Perin
+    graph = {}
     return graph
     """
     Retorna um novo grafo vazio.
@@ -10,7 +10,13 @@ def criar_grafo():
     pass
 
 
-def inserir_vertice(grafo, vertice):
+def inserir_vertice(grafo, vertice):#Perin
+    if(vertice in grafo.keys()):
+        return "Vértice já existe"
+    if(!vertice in grafo.keys()):
+        grafo={[vertice]=[]}
+        return grafo
+
     """
     Insere um vértice no grafo, sem arestas iniciais.
     Passos:
@@ -21,7 +27,12 @@ def inserir_vertice(grafo, vertice):
     pass
 
 
-def inserir_aresta(grafo, origem, destino, nao_direcionado=False):
+def inserir_aresta(grafo, origem, destino, nao_direcionado=False):#Perin
+    if(origem in grafo.keys() and destino in grafo.keys()):
+        if(nao_direcionado==True):
+            grafo={[origem]=[destino], [destino]=[origem]}
+        if(nao_direcionado==False):
+            grafo={[origem]=[detino]}
     """
     Adiciona aresta entre origem e destino.
     Passos:
@@ -129,7 +140,12 @@ def percurso_valido(grafo, caminho):
 
 
 
-def main():
+def main():#Perin
+
+
+
+
+
     """
     Crie um menu onde seja possível escolher qual ação deseja realizar
     ex:
