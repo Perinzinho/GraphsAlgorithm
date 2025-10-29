@@ -142,7 +142,31 @@ def percurso_valido(grafo, caminho):
 
 def main():#Perin
 
+while(True):
+    print("1-Criar Grafo")
+    print("2-Inserir vértice")
+    print("3-Inserir aresta")
+    print("4-Remover vértice")
+    print("5-Remover aresta")
+    print("6-Vizinhos")
+    print("7-Listar Vizinhos")
+    print("8-Existe aresta")
+    print("9-grau Vetices")
+    print("10-Exibir grafo")
+    print("11-Percurso Válido")
+    print("0-Sair")
+    opt=int(input("Selecione uma ação: "))
+    
+    match opt:
+        case 1:
+            criar_grafo()
+        case 2:
+            inserir_vertice()#Atributos-Grafo
+        case 3:
+            inserir_aresta()#Atributos-Grafo-Origem-Destino
 
+        case 0:#Encerrar
+            break
 
 
 
