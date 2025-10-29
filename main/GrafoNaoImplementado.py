@@ -17,7 +17,7 @@ def inserir_vertice(grafo, vertice):
     1. Verificar se 'vertice' já é chave em grafo.
     2. Se não for, criar entrada grafo[vertice] = []
     3. Se já existir, não fazer nada (ou avisar)
-    """
+    """ 
     pass
 
 
@@ -32,7 +32,7 @@ def inserir_aresta(grafo, origem, destino, nao_direcionado=False):
     """
     pass
 
-def vizinhos(grafo, vertice):
+def vizinhos(grafo, vertice): # Noah
     """
     Retorna a lista de vizinhos de 'vertice'.
     Passos:
