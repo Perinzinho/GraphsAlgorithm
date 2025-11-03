@@ -75,38 +75,42 @@ def exibir_grafo(grafo): # Noah
         print(f"{vertice} -> {vizinhos if vizinhos else '∅'}")
 
 def remover_aresta(grafo, origem, destino, nao_direcionado=False):#GUSTAVO
-    """
-    Remove a aresta entre origem e destino.
-    Passos:
-    1. Verificar se 'origem' existe; se não, terminar.
-    2. Se destino estiver em grafo[origem], remover essa ocorrência.
-    3. Se for não direcionado, também:
-         - verificar se 'destino' existe e remover 'origem' de grafo[destino] se presente.
-    """
-    pass
+    if origem not in grafo:
+        print(f"Origem '{origem}' não existe no grafo.")
+        return
+
+
+    if destino in grafo[origem]:
+        grafo[origem].remove(destino)
+
+
+    if nao_direcionado and destino in grafo and origem in grafo[destino]:
+        grafo[destino].remove(origem)
 
 
 def remover_vertice(grafo, vertice, nao_direcionado=True):#GUSTAVO
-    """
-    Remove um vértice e todas as arestas que o tocam.
-    Passos:
-    1. Verificar se 'vertice' existe em grafo; se não, terminar.
-    2. Para cada outro vertice no grafo:
-         - se 'vertice' estiver na lista de vizinhos, remover essa aresta.
-    3. Remover o vertice do grafo
-    4. Opcional: retornar confirmação/erro.
-    """
-    pass
+
+    if vertice not in grafo:
+        print(f"Vértice '{vertice}' não existe no grafo.")
+        return
+
+
+    for v in grafo:
+        if vertice in grafo[v]:
+            grafo[v].remove(vertice)
+
+
+    del grafo[vertice]
+
+    print(f"Vértice '{vertice}' removido com sucesso.")
 
 
 def existe_aresta(grafo, origem, destino):#GUSTAVO
-    """
-    Verifica se existe aresta direta origem -> destino.
-    Passos:
-    1. Verificar se 'origem' é chave no grafo.
-    2. Retornar True se 'destino' estiver em grafo[origem], caso contrário False.
-    """
-    pass
+
+    if origem not in grafo:
+        return False
+    return destino in grafo[origem]
+
 
 def grau_vertices(grafo):
     """
