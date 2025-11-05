@@ -1,172 +1,201 @@
-from numba.cuda.printimpl import print_item
-
-
 def criar_grafo():
-    matriz = [()]
-    vertice = [()]
-    return matriz, vertice
-pass
+    matriz = []
+    vertices = []
+    return matriz, vertices
 
 
 def inserir_vertice(matriz, vertices, vertice):
     if vertice in vertices:
-        print(f"O vertice {vertice} ja existe no grafo.")
+        print(f"O vértice '{vertice}' já existe.")
         return matriz, vertices
 
     vertices.append(vertice)
 
+    # Adiciona uma nova coluna (0) para cada linha existente
     for linha in matriz:
         linha.append(0)
 
+    # Cria a nova linha com zeros
     nova_linha = [0] * len(vertices)
     matriz.append(nova_linha)
-    print(f"vertice {vertice} adicionado")
+
+    print(f"Vértice '{vertice}' adicionado.")
     return matriz, vertices
-
-    """
-    Adiciona um novo vértice ao grafo.
-
-    Passos:
-    1. Verificar se o vértice já existe em 'vertices'.
-    2. Caso não exista:
-        - Adicionar o vértice à lista 'vertices'.
-        - Aumentar o tamanho da matriz:
-            a) Para cada linha existente, adicionar um valor 0 no final (nova coluna).
-            b) Adicionar uma nova linha com zeros do tamanho atualizado.
-    """
-    pass
 
 
 def inserir_aresta(matriz, vertices, origem, destino, nao_direcionado=False):
-    """
-    Adiciona uma aresta entre dois vértices.
+    if origem not in vertices:
+        inserir_vertice(matriz, vertices, origem)
+    if destino not in vertices:
+        inserir_vertice(matriz, vertices, destino)
 
-    Passos:
-    1. Garantir que 'origem' e 'destino' existam em 'vertices':
-        - Se não existirem, chamar 'inserir_vertice' para adicioná-los.
-    2. Localizar o índice da origem (i) e do destino (j).
-    3. Marcar a conexão na matriz: matriz[i][j] = 1.
-    4. Se nao_direcionado=True, também marcar a conexão inversa matriz[j][i] = 1.
-    """
-    pass
+    i = vertices.index(origem)
+    j = vertices.index(destino)
+
+    matriz[i][j] = 1
+
+    if nao_direcionado:
+        matriz[j][i] = 1
+
+    print(f"Aresta adicionada: {origem} -> {destino}")
 
 
 def remover_vertice(matriz, vertices, vertice):
-    """
-    Remove um vértice e todas as arestas associadas.
+    if vertice not in vertices:
+        print("Vértice não existe.")
+        return matriz, vertices
 
-    Passos:
-    1. Verificar se o vértice existe em 'vertices'.
-    2. Caso exista:
-        - Descobrir o índice correspondente (usando vertices.index(vertice)).
-        - Remover a linha da matriz na posição desse índice.
-        - Remover a coluna (mesmo índice) de todas as outras linhas.
-        - Remover o vértice da lista 'vertices'.
-    """
-    pass
+    idx = vertices.index(vertice)
+
+    # Remove linha
+    matriz.pop(idx)
+    # Remove coluna
+    for linha in matriz:
+        linha.pop(idx)
+
+    vertices.remove(vertice)
+
+    print(f"Vértice '{vertice}' removido.")
+    return matriz, vertices
+
 
 def remover_aresta(matriz, vertices, origem, destino, nao_direcionado=False):
-    """
-    Remove uma aresta entre dois vértices.
+    if origem not in vertices or destino not in vertices:
+        print("Um dos vértices não existe.")
+        return
 
-    Passos:
-    1. Verificar se ambos os vértices existem.
-    2. Localizar os índices (i e j).
-    3. Remover a aresta: matriz[i][j] = 0.
-    4. Se nao_direcionado=True, também remover a inversa: matriz[j][i] = 0.
-    """
-    pass
+    i = vertices.index(origem)
+    j = vertices.index(destino)
+
+    matriz[i][j] = 0
+
+    if nao_direcionado:
+        matriz[j][i] = 0
+
+    print(f"Aresta removida: {origem} -> {destino}")
 
 
 def existe_aresta(matriz, vertices, origem, destino):
-    """
-    Verifica se existe uma aresta direta entre dois vértices.
+    if origem not in vertices or destino not in vertices:
+        return False
 
-    Passos:
-    1. Verificar se ambos os vértices existem em 'vertices'.
-    2. Obter os índices (i, j).
-    3. Retornar True se matriz[i][j] == 1, caso contrário False.
-    """
-    pass
+    i = vertices.index(origem)
+    j = vertices.index(destino)
+
+    return matriz[i][j] == 1
 
 
 def vizinhos(matriz, vertices, vertice):
-    """
-    Retorna a lista de vizinhos (vértices alcançáveis a partir de 'vertice').
+    if vertice not in vertices:
+        return []
 
-    Passos:
-    1. Verificar se 'vertice' existe em 'vertices'.
-    2. Obter o índice 'i' correspondente.
-    3. Criar uma lista de vizinhos vazia
-    4. Para cada item da linha matriz[i], verificar se == 1
-        - Adicionar o vértice correspondente na lista de vizinhos
-    5. Retornar essa lista.
-    """
-    pass
+    i = vertices.index(vertice)
+    lista = []
 
+    for j in range(len(vertices)):
+        if matriz[i][j] == 1:
+            lista.append(vertices[j])
 
-def grau_vertices(matriz, vertices):
-    """
-    Calcula o grau de entrada, saída e total de cada vértice.
-
-    Passos:
-    1. Criar um dicionário vazio 'graus'.
-    2. Para cada vértice i:
-        - Se o grafo for direcionado:
-            - Grau de saída: somar os valores da linha i.
-            - Grau de entrada: somar os valores da coluna i.
-            - Grau total = entrada + saída.
-        - Se não:
-            - calcular apenas o grau de saida ou entrada
-    3. Armazenar no dicionário no formato:
-        graus[vértice] = {"saida": x, "entrada": y, "total": z} ou graus[vértice] = x.
-    4. Retornar 'graus'.
-    """
-    pass
-
-
-def percurso_valido(matriz, vertices, caminho):
-    """
-    Verifica se um percurso (sequência de vértices) é possível no grafo.
-
-    Passos:
-    1. Percorrer a lista 'caminho' de forma sequencial (de 0 até len-2).
-    2. Para cada par consecutivo (u, v):
-        - Verificar se existe_aresta(matriz, vertices, u, v) é True.
-        - Se alguma não existir, retornar False.
-    3. Se todas existirem, retornar True.
-    """
-    pass
+    return lista
 
 
 def listar_vizinhos(matriz, vertices, vertice):
-    """
-    Exibe (ou retorna) os vizinhos de um vértice.
+    if vertice not in vertices:
+        print("Vértice não encontrado.")
+        return
 
-    Passos:
-    1. Verificar se o vértice existe.
-    2. Chamar a função vizinhos() para obter a lista.
-    3. Exibir a lista formatada (ex: print(f"Vizinhos de {v}: {lista}")).
-    """
-    pass
+    print(f"Vizinhos de {vertice}: {vizinhos(matriz, vertices, vertice)}")
+
+
+def grau_vertices(matriz, vertices):
+    print("\n--- GRAU DOS VÉRTICES ---")
+    for v in vertices:
+        i = vertices.index(v)
+        saida = sum(matriz[i])                 # soma da linha
+        entrada = sum(linha[i] for linha in matriz)  # soma da coluna
+        total = entrada + saida
+        print(f"{v}: entrada={entrada}, saída={saida}, total={total}")
+    print("-------------------------\n")
+
+
+def percurso_valido(matriz, vertices, caminho):
+    for i in range(len(caminho)-1):
+        if not existe_aresta(matriz, vertices, caminho[i], caminho[i+1]):
+            return False
+    return True
 
 
 def exibir_grafo(matriz, vertices):
-    """
-    Exibe o grafo em formato de matriz de adjacência.
-
-    Passos:
-    1. Exibir cabeçalho com o nome dos vértices.
-    2. Para cada linha i:
-        - Mostrar o nome do vértice.
-        - Mostrar os valores da linha (0 ou 1) separados por espaço.
-    """
-    pass
+    print("\n   ", "  ".join(vertices))
+    for i in range(len(matriz)):
+        print(vertices[i], matriz[i])
+    print()
 
 
 def main():
+    matriz, vertices = criar_grafo()
 
-    pass
+    while True:
+        print("""
+--- MENU (Matriz de Adjacência) ---
+1 - Exibir Grafo
+2 - Inserir Vértice
+3 - Inserir Aresta
+4 - Remover Vértice
+5 - Remover Aresta
+6 - Listar Vizinhos
+7 - Verificar Aresta
+8 - Exibir Grau
+9 - Verificar Percurso
+0 - Sair
+""")
+        op = input("Escolha: ")
+
+        if op == "1":
+            exibir_grafo(matriz, vertices)
+
+        elif op == "2":
+            v = input("Nome do vértice: ")
+            inserir_vertice(matriz, vertices, v)
+
+        elif op == "3":
+            o = input("Origem: ")
+            d = input("Destino: ")
+            tipo = input("Não direcionado? (s/n): ")
+            inserir_aresta(matriz, vertices, o, d, tipo.lower() == "s")
+
+        elif op == "4":
+            v = input("Vértice: ")
+            remover_vertice(matriz, vertices, v)
+
+        elif op == "5":
+            o = input("Origem: ")
+            d = input("Destino: ")
+            tipo = input("Não direcionado? (s/n): ")
+            remover_aresta(matriz, vertices, o, d, tipo.lower() == "s")
+
+        elif op == "6":
+            v = input("Vértice: ")
+            listar_vizinhos(matriz, vertices, v)
+
+        elif op == "7":
+            o = input("Origem: ")
+            d = input("Destino: ")
+            print("Existe aresta?", existe_aresta(matriz, vertices, o, d))
+
+        elif op == "8":
+            grau_vertices(matriz, vertices)
+
+        elif op == "9":
+            caminho = input("Caminho separado por espaço: ").split()
+            print("Percurso válido?", percurso_valido(matriz, vertices, caminho))
+
+        elif op == "0":
+            print("Saindo...")
+            break
+
+        else:
+            print("Opção inválida!")
 
 
 if __name__ == "__main__":
