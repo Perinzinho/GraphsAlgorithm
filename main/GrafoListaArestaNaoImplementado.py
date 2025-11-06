@@ -1,10 +1,10 @@
-def criar_grafo():
+def criar_grafo(): #Noah
     vertices = []
     arestas = []
     return vertices, arestas
 
 
-def inserir_vertice(vertices, vertice):
+def inserir_vertice(vertices, vertice): #Noah
     if vertice not in vertices:
         vertices.append(vertice)
         print(f"Vértice '{vertice}' adicionado.")
@@ -12,7 +12,7 @@ def inserir_vertice(vertices, vertice):
         print(f"O vértice '{vertice}' já existe.")
 
 
-def inserir_aresta(vertices, arestas, origem, destino, nao_direcionado=False):
+def inserir_aresta(vertices, arestas, origem, destino, nao_direcionado=False): #Noah
     if origem not in vertices:
         inserir_vertice(vertices, origem)
     if destino not in vertices:
@@ -27,7 +27,7 @@ def inserir_aresta(vertices, arestas, origem, destino, nao_direcionado=False):
     print(f"Aresta '{origem} -> {destino}' adicionada.")
 
 
-def remover_aresta(arestas, origem, destino, nao_direcionado=False):
+def remover_aresta(arestas, origem, destino, nao_direcionado=False): #Leo
     if [origem, destino] in arestas:
         arestas.remove([origem, destino])
 
@@ -37,7 +37,7 @@ def remover_aresta(arestas, origem, destino, nao_direcionado=False):
     print(f"Aresta '{origem} -> {destino}' removida.")
 
 
-def remover_vertice(vertices, arestas, vertice):
+def remover_vertice(vertices, arestas, vertice): #Joaquim
     if vertice not in vertices:
         print("Vértice não encontrado.")
         return
@@ -49,11 +49,11 @@ def remover_vertice(vertices, arestas, vertice):
     print(f"Vértice '{vertice}' e suas arestas foram removidos.")
 
 
-def existe_aresta(arestas, origem, destino):
+def existe_aresta(arestas, origem, destino): #Joaquim
     return [origem, destino] in arestas
 
 
-def vizinhos(vertices, arestas, vertice):
+def vizinhos(vertices, arestas, vertice): #Joaquim
     if vertice not in vertices:
         return []
 
@@ -64,12 +64,12 @@ def vizinhos(vertices, arestas, vertice):
     return lista
 
 
-def listar_vizinhos(vertices, arestas, vertice):
+def listar_vizinhos(vertices, arestas, vertice): #Joaquim
     v = vizinhos(vertices, arestas, vertice)
     print(f"Vizinhos de {vertice}: {v}")
 
 
-def grau_vertices(vertices, arestas):
+def grau_vertices(vertices, arestas): #Leo
     print("\n--- GRAU DOS VÉRTICES ---")
     for v in vertices:
         entrada = sum(1 for (o, d) in arestas if d == v)
@@ -79,14 +79,14 @@ def grau_vertices(vertices, arestas):
     print("-------------------------\n")
 
 
-def percurso_valido(arestas, caminho):
+def percurso_valido(arestas, caminho): #Leo
     for i in range(len(caminho) - 1):
         if not existe_aresta(arestas, caminho[i], caminho[i+1]):
             return False
     return True
 
 
-def exibir_grafo(vertices, arestas):
+def exibir_grafo(vertices, arestas): #Gustavo
     print("\nVértices:", vertices)
     print("Arestas:")
     for origem, destino in arestas:
@@ -94,7 +94,7 @@ def exibir_grafo(vertices, arestas):
     print()
 
 
-def main():
+def main(): #Gustavo
     vertices, arestas = criar_grafo()
 
     while True:

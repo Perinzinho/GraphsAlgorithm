@@ -4,7 +4,7 @@ def criar_grafo():
     return matriz, vertices
 
 
-def inserir_vertice(matriz, vertices, vertice):
+def inserir_vertice(matriz, vertices, vertice): #Noah
     if vertice in vertices:
         print(f"O vértice '{vertice}' já existe.")
         return matriz, vertices
@@ -23,7 +23,7 @@ def inserir_vertice(matriz, vertices, vertice):
     return matriz, vertices
 
 
-def inserir_aresta(matriz, vertices, origem, destino, nao_direcionado=False):
+def inserir_aresta(matriz, vertices, origem, destino, nao_direcionado=False): #Noah
     if origem not in vertices:
         inserir_vertice(matriz, vertices, origem)
     if destino not in vertices:
@@ -40,7 +40,7 @@ def inserir_aresta(matriz, vertices, origem, destino, nao_direcionado=False):
     print(f"Aresta adicionada: {origem} -> {destino}")
 
 
-def remover_vertice(matriz, vertices, vertice):
+def remover_vertice(matriz, vertices, vertice): #Leo
     if vertice not in vertices:
         print("Vértice não existe.")
         return matriz, vertices
@@ -59,7 +59,7 @@ def remover_vertice(matriz, vertices, vertice):
     return matriz, vertices
 
 
-def remover_aresta(matriz, vertices, origem, destino, nao_direcionado=False):
+def remover_aresta(matriz, vertices, origem, destino, nao_direcionado=False): #Leo
     if origem not in vertices or destino not in vertices:
         print("Um dos vértices não existe.")
         return
@@ -75,7 +75,7 @@ def remover_aresta(matriz, vertices, origem, destino, nao_direcionado=False):
     print(f"Aresta removida: {origem} -> {destino}")
 
 
-def existe_aresta(matriz, vertices, origem, destino):
+def existe_aresta(matriz, vertices, origem, destino): #Gustavo
     if origem not in vertices or destino not in vertices:
         return False
 
@@ -85,7 +85,7 @@ def existe_aresta(matriz, vertices, origem, destino):
     return matriz[i][j] == 1
 
 
-def vizinhos(matriz, vertices, vertice):
+def vizinhos(matriz, vertices, vertice): #Gustavo
     if vertice not in vertices:
         return []
 
@@ -99,7 +99,7 @@ def vizinhos(matriz, vertices, vertice):
     return lista
 
 
-def listar_vizinhos(matriz, vertices, vertice):
+def listar_vizinhos(matriz, vertices, vertice): #Joaquim
     if vertice not in vertices:
         print("Vértice não encontrado.")
         return
@@ -107,7 +107,7 @@ def listar_vizinhos(matriz, vertices, vertice):
     print(f"Vizinhos de {vertice}: {vizinhos(matriz, vertices, vertice)}")
 
 
-def grau_vertices(matriz, vertices):
+def grau_vertices(matriz, vertices): #Joaquim
     print("\n--- GRAU DOS VÉRTICES ---")
     for v in vertices:
         i = vertices.index(v)
@@ -118,21 +118,21 @@ def grau_vertices(matriz, vertices):
     print("-------------------------\n")
 
 
-def percurso_valido(matriz, vertices, caminho):
+def percurso_valido(matriz, vertices, caminho):#Gustavo
     for i in range(len(caminho)-1):
         if not existe_aresta(matriz, vertices, caminho[i], caminho[i+1]):
             return False
     return True
 
 
-def exibir_grafo(matriz, vertices):
+def exibir_grafo(matriz, vertices): #Gustavo
     print("\n   ", "  ".join(vertices))
     for i in range(len(matriz)):
         print(vertices[i], matriz[i])
     print()
 
 
-def main():
+def main(): #Noah
     matriz, vertices = criar_grafo()
 
     while True:

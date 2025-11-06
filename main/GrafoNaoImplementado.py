@@ -100,7 +100,7 @@ def existe_aresta(grafo, origem, destino):  # Gustavo
     return destino in grafo[origem]
 
 
-def grau_vertices(grafo):  # Completo
+def grau_vertices(grafo):  # Joaquim
     graus = {}
 
     for v in grafo:
@@ -122,7 +122,7 @@ def grau_vertices(grafo):  # Completo
     return graus
 
 
-def percurso_valido(grafo, caminho):  # Completo
+def percurso_valido(grafo, caminho):  #Joaquim
     if len(caminho) < 2:
         return True
 
@@ -137,7 +137,7 @@ def percurso_valido(grafo, caminho):  # Completo
     return True
 
 
-def main():  # Perin
+def main():  # Leo
     grafo = {}
     while True:
         print("\n===== MENU =====")
