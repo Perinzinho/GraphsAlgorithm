@@ -3,10 +3,10 @@
 ## Computer Science Project for the Graphs Teory Colleage Subject
 
 Grupo Composto Por:
- - Joaquim Pedro Augusto-1993926
+ - Joaquim Pedro Augusto
 
  - Noah vêri Franco
 
- - Gustavo Rosa-2012734
+ - Gustavo Rosa
 
- - Leonardo Perin-1995746
+ - Leonardo Perin
